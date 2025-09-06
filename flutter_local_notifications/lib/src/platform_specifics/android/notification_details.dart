@@ -156,6 +156,7 @@ class AndroidNotificationDetails {
     this.colorized = false,
     this.number,
     this.audioAttributesUsage = AudioAttributesUsage.notification,
+    this.resendWhenDismissed = false,
   });
 
   /// The icon that should be used when displaying the notification.
@@ -426,4 +427,11 @@ class AndroidNotificationDetails {
   /// such as alarm or ringtone set in [`AudioAttributes.Builder`](https://developer.android.com/reference/android/media/AudioAttributes.Builder#setUsage(int)).
   /// https://developer.android.com/reference/android/media/AudioAttributes
   final AudioAttributesUsage audioAttributesUsage;
+
+  /// Determines if a notification should be resent when dismissed by the user.
+  ///
+  /// This is intended to be used with ongoing notifications to deal with
+  /// issues where the user can dismiss them on some Android OS versions.
+  /// The default value is `false`.
+  final bool resendWhenDismissed;
 }

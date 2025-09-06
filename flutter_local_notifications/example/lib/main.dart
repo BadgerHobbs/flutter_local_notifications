@@ -1912,7 +1912,8 @@ class _HomePageState extends State<HomePage> {
             importance: Importance.max,
             priority: Priority.high,
             ongoing: true,
-            autoCancel: false);
+            autoCancel: false,
+            resendWhenDismissed: true);
     const NotificationDetails notificationDetails =
         NotificationDetails(android: androidNotificationDetails);
     await flutterLocalNotificationsPlugin.show(

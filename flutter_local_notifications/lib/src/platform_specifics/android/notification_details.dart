@@ -115,6 +115,7 @@ class AndroidNotificationDetails {
     this.groupAlertBehavior = GroupAlertBehavior.all,
     this.autoCancel = true,
     this.ongoing = false,
+    this.preventOngoingDismiss = false,
     this.silent = false,
     this.color,
     this.largeIcon,
@@ -240,6 +241,14 @@ class AndroidNotificationDetails {
 
   /// Specifies if the notification will be "ongoing".
   final bool ongoing;
+
+  /// Prevents the user from dismissing an "ongoing" notification.
+  ///
+  /// By default, "ongoing" notifications can be dismissed by the user on some
+  /// versions of Android. Setting this to `true` will prevent this.
+  /// This is implemented by re-showing the notification when it has been
+  /// dismissed.
+  final bool preventOngoingDismiss;
 
   /// Specifies if the notification will be "silent".
   final bool silent;

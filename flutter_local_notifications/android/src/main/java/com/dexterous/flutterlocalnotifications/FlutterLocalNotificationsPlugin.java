@@ -271,6 +271,9 @@ public class FlutterLocalNotificationsPlugin
     PendingIntent pendingIntent =
         PendingIntent.getActivity(context, notificationDetails.id, intent, flags);
 
+    // Create a delete intent to handle when an ongoing notification is dismissed.
+    // This is a workaround for issues on some Android versions where ongoing notifications can be
+    // dismissed.
     Gson gson = buildGson();
     String notificationDetailsJson = gson.toJson(notificationDetails);
     Intent dismissedIntent = new Intent(context, DismissedNotificationReceiver.class);

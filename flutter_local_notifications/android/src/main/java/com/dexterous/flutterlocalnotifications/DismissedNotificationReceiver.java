@@ -11,6 +11,13 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
+/**
+ * A receiver that is triggered when a notification is dismissed by the user.
+ *
+ * This receiver is responsible for re-displaying ongoing (sticky) notifications that have been
+ * dismissed by the user. This is a workaround for issues on some Android versions where ongoing
+ * notifications can be dismissed.
+ */
 public class DismissedNotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {

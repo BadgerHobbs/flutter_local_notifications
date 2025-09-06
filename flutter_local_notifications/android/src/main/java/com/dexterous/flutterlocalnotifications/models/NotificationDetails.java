@@ -128,6 +128,7 @@ public class NotificationDetails implements Serializable {
   private static final String COLORIZED = "colorized";
   private static final String NUMBER = "number";
   private static final String AUDIO_ATTRIBUTES_USAGE = "audioAttributesUsage";
+  private static final String RESEND_WHEN_DISMISSED = "resendWhenDismissed";
 
   public Integer id;
   public String title;
@@ -198,6 +199,7 @@ public class NotificationDetails implements Serializable {
   public Boolean colorized;
   public Integer number;
   public Integer audioAttributesUsage;
+  public Boolean resendWhenDismissed;
 
   // Note: this is set on the Android to save details about the icon that should be used when
   // re-hydrating scheduled notifications when a device has been restarted.
@@ -298,6 +300,8 @@ public class NotificationDetails implements Serializable {
       notificationDetails.number = (Integer) platformChannelSpecifics.get(NUMBER);
       notificationDetails.audioAttributesUsage =
           (Integer) platformChannelSpecifics.get(AUDIO_ATTRIBUTES_USAGE);
+      notificationDetails.resendWhenDismissed =
+          (Boolean) platformChannelSpecifics.get(RESEND_WHEN_DISMISSED);
 
       if (platformChannelSpecifics.containsKey(ACTIONS)) {
         @SuppressWarnings("unchecked")

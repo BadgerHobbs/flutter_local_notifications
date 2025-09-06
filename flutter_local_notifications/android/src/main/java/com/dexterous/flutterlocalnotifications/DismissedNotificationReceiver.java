@@ -28,7 +28,7 @@ public class DismissedNotificationReceiver extends BroadcastReceiver {
             }.getType();
             NotificationDetails notificationDetails = gson.fromJson(notificationDetailsJson, type);
 
-            if (BooleanUtils.getValue(notificationDetails.ongoing)) {
+            if (BooleanUtils.getValue(notificationDetails.resendWhenDismissed) && BooleanUtils.getValue(notificationDetails.ongoing)) {
                 FlutterLocalNotificationsPlugin.showNotification(context, notificationDetails);
             }
         }

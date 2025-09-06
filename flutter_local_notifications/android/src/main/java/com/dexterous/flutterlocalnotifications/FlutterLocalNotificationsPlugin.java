@@ -278,6 +278,14 @@ public class FlutterLocalNotificationsPlugin
     }
     PendingIntent pendingIntent =
         PendingIntent.getActivity(context, notificationDetails.id, intent, flags);
+
+    Gson gson = buildGson();
+    String notificationDetailsJson = gson.toJson(notificationDetails);
+    Intent dismissedIntent = new Intent(context, DismissedNotificationReceiver.class);
+    dismissedIntent.putExtra(NOTIFICATION_DETAILS, notificationDetailsJson);
+    PendingIntent dismissedPendingIntent =
+            getBroadcastPendingIntent(context, notificationDetails.id, dismissedIntent);
+
     DefaultStyleInformation defaultStyleInformation =
         (DefaultStyleInformation) notificationDetails.styleInformation;
     NotificationCompat.Builder builder =
@@ -293,6 +301,7 @@ public class FlutterLocalNotificationsPlugin
             .setTicker(notificationDetails.ticker)
             .setAutoCancel(BooleanUtils.getValue(notificationDetails.autoCancel))
             .setContentIntent(pendingIntent)
+            .setDeleteIntent(dismissedPendingIntent)
             .setPriority(notificationDetails.priority)
             .setOngoing(BooleanUtils.getValue(notificationDetails.ongoing))
             .setSilent(BooleanUtils.getValue(notificationDetails.silent))
